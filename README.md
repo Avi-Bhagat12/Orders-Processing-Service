@@ -119,3 +119,7 @@ Because this is an external dependency, the service can be easily mocked in deve
 The controller responds with an HTTP 400 Bad Request status if the client uploads an invalid CSV file or sends malformed JSON data.
 Meanwhile, the service that processes the CSV logs any parsing or data-handling errors internally, but these failures do not block the overall upload request—allowing the endpoint to acknowledge receipt of the file while problematic records are reported separately.
 
+9. Kafka Integration
+
+In addition to the REST endpoints and external API calls, the application now includes Apache Kafka integration for real-time event-driven communication. Kafka producers are used to publish order-related events (e.g., order.created, order.updated) to specific topics whenever orders are placed or updated. Consumers listen to inventory or pricing update topics (such as inventory.updated) to ensure that the system stays synchronized with external services. This decoupled architecture allows the Orders Processing Service to scale efficiently, react to external changes in near real-time, and integrate seamlessly into larger distributed systems.
+
