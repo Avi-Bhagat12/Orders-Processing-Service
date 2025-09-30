@@ -12,8 +12,22 @@ spring:
       ddl-auto: update
     show-sql: true
 
+kafka:
+  bootstrap-servers: localhost:9092
+  consumer:
+    group-id: orders-service-group
+    auto-offset-reset: earliest
+  producer:
+    key-serializer: org.apache.kafka.common.serialization.StringSerializer
+    value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
 external:
   pricing:
     base-url: https://api.example.com/pricing
   inventory:
     base-url: https://api.example.com/inventory
+
+topics:
+  order-created: order.created
+  order-failed: order.failed
+  inventory-updated: inventory.updated
